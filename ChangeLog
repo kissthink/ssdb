@@ -3,7 +3,11 @@
 		- Add string/bit operations: getbit, setbit, bitcount, strlen, substr(getrange)(2014-06-07)
 		- Put multi_*get commands to execute in worker thread(2014-06-17)
 	* Incompatible changes:
+		- Delete expireation info when deleting key(2014-06-28)
 		- Inlucde links, total_calls in info cmd's reply(2014-06-17)
+	* Bug fixes:
+		- Fix zRangeByScore(redis) bug(2014-06-28)
+		- Fix key expiration/ttl bug(2014-07-02)
 
 * 1.6.8.7
 	* New features:

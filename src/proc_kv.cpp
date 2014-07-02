@@ -62,6 +62,7 @@ static int proc_setnx(Server *serv, Link *link, const Request &req, Response *re
 }
 
 static int proc_setx(Server *serv, Link *link, const Request &req, Response *resp){
+	Locking l(&serv->expiration->mutex);
 	if(req.size() < 4){
 		resp->push_back("client_error");
 		return 0;
@@ -138,6 +139,10 @@ static int proc_multi_del(Server *serv, Link *link, const Request &req, Response
 		if(ret == -1){
 			resp->push_back("error");
 		}else{
+			for(Request::const_iterator it=req.begin()+1; it!=req.end(); it++){
+				const Bytes key = *it;
+				serv->expiration->del_ttl(key);
+			}
 			serv->int_reply(resp, ret);
 		}
 	}
@@ -167,6 +172,7 @@ static int proc_multi_get(Server *serv, Link *link, const Request &req, Response
 }
 
 static int proc_del(Server *serv, Link *link, const Request &req, Response *resp){
+	Locking l(&serv->expiration->mutex);
 	if(req.size() < 2){
 		resp->push_back("client_error");
 	}else{
@@ -174,6 +180,8 @@ static int proc_del(Server *serv, Link *link, const Request &req, Response *resp
 		if(ret == -1){
 			resp->push_back("error");
 		}else{
+			serv->expiration->del_ttl(req[1]);
+			
 			resp->push_back("ok");
 			resp->push_back("1");
 		}
