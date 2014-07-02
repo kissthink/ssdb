@@ -14,6 +14,8 @@
 	* Bug fixes:
 		- Redesign network flow, support very large batch commands
 		- Fix bug on ssdb-dump that lose data, print out error message(2014-04-05)
+		- Fix key expiration/ttl bug(2014-07-02)
+
 
 * 1.6.8.5 (2014-03-05)
 	* New features:

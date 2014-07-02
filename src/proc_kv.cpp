@@ -74,6 +74,7 @@ static int proc_setx(Server *serv, Link *link, const Request &req, Response *res
 		resp->push_back("client_error");
 		return 0;
 	}
+	Locking l(&serv->expiration->mutex);
 	int ret;
 	ret = serv->ssdb->set(req[1], req[2]);
 	if(ret == -1){
