@@ -1,6 +1,6 @@
 # SSDB - A fast NoSQL database for storing big list of data
 
-SSDB is a high performace key-value(key-string, key-zset, key-hashmap) NoSQL database, __an alternative for Redis__.
+SSDB is a high performace key-value(key-string, key-zset, key-hashmap) NoSQL database, __an alternative to Redis__.
 
 SSDB is stable, production-ready and is widely used by many Internet companies including QIHU 360.
 
@@ -10,11 +10,10 @@ SSDB is stable, production-ready and is widely used by many Internet companies i
 * Designed to store collection data
 * Persistent key-value, key-zset, key-map('hashmap') storage
 * Redis clients are supported
-* Client API supports including [C++](http://ssdb.io/docs/cpp/), [PHP](http://ssdb.io/docs/php/), Python, Cpy, [Java](http://ssdb.io/docs/java/), [nodejs](https://github.com/ideawu/ssdb/wiki/Documentation_nodejs_API), [Ruby](https://github.com/bsm/ssdb-rb), [Go](http://ssdb.io/docs/go/)
+* Client API supports including C++, PHP, Python, Cpy, Java, nodejs, Ruby, Go([see all](http://ssdb.io/docs/clients.html))
 * Persistent queue service
-* **Replication(master-slave), load balance** [\[see wiki Replication\]](https://github.com/ideawu/ssdb/wiki/Replication)
-* <i>Future Features</i>
-  * <i>Distributed</i>
+* **Replication(master-slave), load balance**
+* GUI administration tool([phpssdbadmin](https://github.com/ssdb/phpssdbadmin))
 
 ## PHP client API example
 
@@ -132,6 +131,10 @@ See [Changes-Made-to-LevelDB wiki](https://github.com/ideawu/ssdb/wiki/Changes-M
 ## LICENSE
 
 SSDB is licensed under [New BSD License](http://opensource.org/licenses/BSD-3-Clause), a very flexible license to use.
+
+## Authors
+
+@ideawu
 
 ## Thanks
 
