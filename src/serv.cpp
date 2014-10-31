@@ -100,7 +100,7 @@ void Server::proc(ProcJob *job){
 		job->cmd = cmd;
 		
 		// KEY RANGE
-		if(cmd->key_pos > 0){
+		if(cmd->key_pos > 0 && req->size() > cmd->key_pos){
 			std::string key = req->at(cmd->key_pos).String();
 			if(!this->ssdb->in_kv_range(key)){
 				resp.push_back("out_of_range");
