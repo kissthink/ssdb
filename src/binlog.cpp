@@ -99,6 +99,9 @@ std::string Binlog::dumps() const{
 		case BinlogCommand::QPOP_FRONT:
 			str.append("qpop_front ");
 			break;
+		case BinlogCommand::QSET:
+			str.append("qset ");
+			break;
 	}
 	Bytes b = this->key();
 	str.append(hexmem(b.data(), b.size()));

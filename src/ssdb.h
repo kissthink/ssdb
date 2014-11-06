@@ -144,6 +144,7 @@ public:
 			std::vector<std::string> *list);
 	int qget(const Bytes &name, int64_t index, std::string *item);
 	int qset(const Bytes &name, int64_t index, const Bytes &item);
+	int qset_by_seq(const Bytes &name, uint64_t seq, const Bytes &item, char log_type=BinlogType::SYNC);
 
 private:
 	int64_t _qpush(const Bytes &name, const Bytes &item, uint64_t front_or_back_seq, char log_type=BinlogType::SYNC);
