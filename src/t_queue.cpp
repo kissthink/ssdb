@@ -153,7 +153,7 @@ int SSDB::qset(const Bytes &name, int64_t index, const Bytes &item){
 	if(size == -1){
 		return -1;
 	}
-	if(index > size || index < -size){
+	if(index >= size || index < -size){
 		return 0;
 	}
 	
