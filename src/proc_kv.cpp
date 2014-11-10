@@ -1,3 +1,8 @@
+/*
+Copyright (c) 2012-2014 The SSDB Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+*/
 /* kv */
 
 static int proc_get(Server *serv, Link *link, const Request &req, Response *resp){
@@ -305,7 +310,6 @@ static int proc_countbit(Server *serv, Link *link, const Request &req, Response 
 		if(req.size() > 2){
 			start = req[2].Int();
 		}
-		int size = -1;
 		std::string val;
 		int ret = serv->ssdb->get(key, &val);
 		if(ret == -1){
