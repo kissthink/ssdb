@@ -21,6 +21,7 @@ static DEF_PROC(auth);
 
 volatile bool quit = false;
 volatile uint32_t g_ticks = 0;
+volatile bool reload = false;
 
 void signal_handler(int sig){
 	switch(sig){
@@ -31,6 +32,10 @@ void signal_handler(int sig){
 		}
 		case SIGALRM:{
 			g_ticks ++;
+			break;
+		}
+		case SIGHUP:{
+			reload = true;
 			break;
 		}
 	}
@@ -55,6 +60,7 @@ NetworkServer::NetworkServer(){
 	signal(SIGPIPE, SIG_IGN);
 	signal(SIGINT, signal_handler);
 	signal(SIGTERM, signal_handler);
+	signal(SIGHUP, signal_handler);
 #ifndef __CYGWIN__
 	signal(SIGALRM, signal_handler);
 	{
@@ -186,6 +192,10 @@ void NetworkServer::serve(){
 	uint32_t last_ticks = g_ticks;
 	
 	while(!quit){
+		if (reload) {
+			// reload config
+			reload_config();
+		}
 		// status report
 		if((uint32_t)(g_ticks - last_ticks) >= STATUS_REPORT_TICKS){
 			last_ticks = g_ticks;
@@ -441,6 +451,9 @@ void NetworkServer::proc(ProcJob *job){
 	}
 }
 
+void NetworkServer::reload_config() {
+	
+}
 
 /* built-in procs */
 

@@ -37,6 +37,7 @@ private:
 	int proc_client_event(const Fdevent *fde, ready_list_t *ready_list);
 
 	void proc(ProcJob *job);
+	void reload_config(); 
 
 	static const int READER_THREADS = 10;
 	static const int WRITER_THREADS = 1;
@@ -54,6 +55,7 @@ public:
 	int link_count;
 	bool need_auth;
 	std::string password;
+	std::string config_path;
 
 	~NetworkServer();
 	
